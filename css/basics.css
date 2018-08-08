@@ -3,3 +3,6 @@ label, select, input{
   display: inline-block;
   margin: 5px 0;
 }
+td {
+	border-style: solid;
+}
