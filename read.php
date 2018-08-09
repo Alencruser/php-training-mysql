@@ -22,6 +22,8 @@
         ?> 
         <tr>
           <td>
+            <form action="update.php" method="POST">
+              <input type="hidden" name="id" value=<?php echo $v["id"] ?>>
             <?php 
             echo $v["name"];
             ?>
@@ -45,6 +47,10 @@
             <?php 
             echo $v["height_difference"];
             ?>
+          </td>
+          <td>
+            <button type="submit">Modifier</button>
+            </form>
           </td>
         </tr>
         <?php 
