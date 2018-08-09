@@ -1,3 +1,6 @@
+<?php session_start();
+if($_SESSION["login"]){
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +14,8 @@
 	<form action="update.php" method="post">
 		<div>
 			<?php 
+			require "logsql.php";
 			try {
-			$pdo = new PDO('mysql:host=localhost;dbname=reunion_island','root','toor',array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 			foreach($pdo->query("SELECT * FROM hiking WHERE id='".$_POST["id"]."'") as $v){
 				?>
 				<label for="name">Name</label>
@@ -60,9 +63,9 @@
 	}
 		try {
 			if(isset($_POST)){
-				$tdo = new PDO('mysql:host=localhost;dbname=reunion_island','root','toor',array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-				$tdo->query("UPDATE hiking SET name = '".htmlspecialchars($_POST['name'])."', difficulty = '".htmlspecialchars($_POST['difficulty'])."', distance = '".htmlspecialchars($_POST['distance'])."', duration = '".htmlspecialchars($_POST['duration'])."', height_difference = '".htmlspecialchars($_POST['height_difference'])."', available = '".htmlspecialchars($_POST['available'])."' WHERE id = ".htmlspecialchars($_POST['id'])."");
-				$tdo=null;
+				$pdo = new PDO('mysql:host=localhost;dbname=reunion_island','root','toor',array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
+				$pdo->query("UPDATE hiking SET name = '".htmlspecialchars($_POST['name'])."', difficulty = '".htmlspecialchars($_POST['difficulty'])."', distance = '".htmlspecialchars($_POST['distance'])."', duration = '".htmlspecialchars($_POST['duration'])."', height_difference = '".htmlspecialchars($_POST['height_difference'])."', available = '".htmlspecialchars($_POST['available'])."' WHERE id = ".htmlspecialchars($_POST['id'])."");
+				$pdo=null;
 			}
 		}catch(PDOException $e){
 			echo "Erreur : ".$e->getMessage();
@@ -71,3 +74,6 @@
 		?>
 	</body>
 	</html>
+<?php } else {
+	header('location:read.php');
+} ?>

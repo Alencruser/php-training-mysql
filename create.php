@@ -1,3 +1,6 @@
+<?php session_start();
+if($_SESSION["login"]){
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,8 +47,7 @@
 		<button type="submit" name="button">Envoyer</button>
 	</form>
 	<?php
-	$pdo = new PDO('mysql:host=localhost;dbname=reunion_island','root','toor',array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-
+	require "logsql.php";
 	$request="INSERT INTO hiking (name,difficulty,distance,duration,height_difference,available) VALUES (:name,:difficulty,:distance,:duration,:height_difference,:available)";
 
 	$idk=$pdo->prepare($request) ;
@@ -71,3 +73,6 @@
 	?>
 </body>
 </html>
+<?php }else{
+	header("location:read.php");
+} ?>

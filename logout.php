@@ -1,2 +1,5 @@
 <?php
-//Logout 
+session_start();
+unset($_SESSION["login"]);
+header("location:read.php");
+?>
