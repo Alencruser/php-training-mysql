@@ -14,6 +14,7 @@
       <th>Distance (Km)</th>
       <th>Durée (hh:mm:ss)</th>
       <th>Dénivelé (Mètres)</th>
+      <th>Disponible</th>
     </tr>
     <?php 
     try {
@@ -22,8 +23,6 @@
         ?> 
         <tr>
           <td>
-            <form action="update.php" method="POST">
-              <input type="hidden" name="id" value=<?php echo $v["id"] ?>>
             <?php 
             echo $v["name"];
             ?>
@@ -49,18 +48,32 @@
             ?>
           </td>
           <td>
-            <button type="submit">Modifier</button>
+            <?php 
+            echo $v["available"];
+             ?>
+          </td>
+          <td>
+            <form action="update.php" method="POST">
+              <input type="hidden" name="id" value=<?php echo $v["id"] ?>>
+              <button type="submit">Modifier</button>
+            </form>
+          </td>
+          <td>
+            <form action="delete.php" method="POST">
+              <input type="hidden" name="id" value=<?php echo $v["id"] ?>>
+              <button type="submit">Supprimer</button>
             </form>
           </td>
         </tr>
         <?php 
       }
     }catch(PDOException $e){
-    echo "Erreur : ".$e->getMessage();
-  }
+      echo "Erreur : ".$e->getMessage();
+    }
 
-  ?>
-  <!-- Afficher la liste des randonnées -->
-</table>
+    ?>
+    <!-- Afficher la liste des randonnées -->
+  </table>
+  <a href="create.php"><button>Creer une randonnée</button></a>
 </body>
 </html>
