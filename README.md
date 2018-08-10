@@ -1,4 +1,4 @@
-https://php-mysql-training.herokuapp.com/
+https://php-mysql-training.herokuapp.com/read.php
 
 # PHP & MySQL
 
