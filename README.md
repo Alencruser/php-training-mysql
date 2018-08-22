@@ -1,4 +1,4 @@
-> Ce repo doit être directement cloné dans votre répertoire apache (/var/www/html ou htdocs ou etc. )
+https://php-mysql-training.herokuapp.com/read.php
 
 # PHP & MySQL
 
